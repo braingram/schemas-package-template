@@ -43,7 +43,7 @@ jobs:
       submodules: false
       default_python: '3.10'
       envs: |
-        {% for name in cookiecutter.downstream %}
+        {%- for name in cookiecutter.downstream %}
         -linux: {{ name }}
         {%- endfor %}
 
