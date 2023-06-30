@@ -25,6 +25,7 @@ share/python-wheels/
 .installed.cfg
 *.egg
 MANIFEST
+*/*/_version.py
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
@@ -70,6 +71,7 @@ instance/
 
 # Sphinx documentation
 docs/_build/
+docs/generated/
 
 # PyBuilder
 .pybuilder/
@@ -136,5 +138,3 @@ dmypy.json
 
 # Cython debug symbols
 cython_debug/
-
-_version.py

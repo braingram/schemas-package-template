@@ -2,13 +2,24 @@
     "package_name": "asdf-example-schemas",
     "module_name": "{{ cookiecutter.package_name|lower()|replace('-', '_') }}",
     "short_description": "{{ cookiecutter.package_name|replace('-', ' ')|replace('_', ' ') }}",
-    "author_name": "Author Name",
-    "author_email": "author@example.com",
-    "github_project": "github-org/{{ cookiecutter.package_name }}",
-    "project_url": "https://github.com/{{ cookiecutter.github_project }}",
-    "uri_authority": "example.com",
-    "uri_project": "example-project",
+    "author_name": "Your name",
+    "author_email": "your@email.com",
+    "github_organziation": "asdf-format",
+    "package_url": "https://github.com/{{ cookiecutter.github_organziation }}/{{ cookiecutter.package_name }}",
+    "readme": "{{ cookiecutter.package_name }} ...",
+    "schema_org_uri": "stsci.edu",
+    "manifest_org_uri": "asdf-format.org",
+    "package_uri_stub": "example",
+    "downstream": {
+	"asdf": {
+	    "install": "pip install asdf[test]@https://github.com/asdf-format/asdf@main",
+	    "test": "pytest asdf"
+	}
+    },
     "_copy_without_render": [
-        ".github"
+        "docs/_static",
+	"docs/_templates",
+	"docs/MakeFile",
+	"docs/make.bat"
     ]
 }

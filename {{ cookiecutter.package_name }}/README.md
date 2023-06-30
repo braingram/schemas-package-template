@@ -1,3 +1,7 @@
 # {{ cookiecutter.package_name }}
+![CI]({{ cookiecutter.package_url }}/workflows/CI/badge.svg)
+![Downstream]({{ cookiecutter.package_url }}/workflows/Downstream/badge.svg)
+[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
-{{ cookiecutter.short_description }}
+{{ cookiecutter.readme }}

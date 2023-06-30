@@ -1,6 +1,105 @@
+[project]
+name = '{{ cookiecutter.module_name }}'
+description = '{{ cookiecutter.short_description }}'
+readme = 'README.md'
+requires-python = '>=3.9'
+license = { file = 'LICENSE' }
+authors = [{ name = '{{ cookiecutter.author_name }}', email = '{{ cookiecutter.author_email }}' }]
+classifiers = [
+    'Programming Language :: Python',
+    'Programming Language :: Python :: 3',
+    'Programming Language :: Python :: 3.9',
+    'Programming Language :: Python :: 3.10',
+    'Programming Language :: Python :: 3.11',
+    'Development Status :: 5 - Production/Stable',
+]
+dependencies = [
+    'asdf-standard >= 1.0.1',
+]
+dynamic = ['version']
+
+[project.optional-dependencies]
+docs = [
+    'tomli',
+    'sphinx',
+    'sphinx-asdf >= 0.1.3',
+    'sphinx-astropy',
+    'astropy >= 5.0.4',
+    'graphviz',
+    'matplotlib',
+    'docutils',
+    'sphinx-rtd-theme',
+]
+test = [
+    'asdf >= 2.8.0',
+    'pytest',
+]
+
+[project.urls]
+'tracker' = '{{ cookiecutter.package_url }}/issues'
+'documentation' = 'https://{{ cookiecutter.package_name }}.readthedocs.io/en/stable'
+'repository' = '{{ cookiecutter.package_url }}'
+
+[project.entry-points]
+'asdf.resource_mappings' = { {{ cookiecutter.module_name }} = '{{ cookiecutter.module_name }}.integration:get_resource_mappings' }
+
 [build-system]
-requires = ["setuptools>=42", "setuptools_scm[toml]>=3.4", "wheel"]
+requires = [
+    "setuptools >=60",
+    "setuptools_scm[toml] >=3.4",
+    "wheel",
+]
 build-backend = "setuptools.build_meta"
+
 
 [tool.setuptools_scm]
 write_to = "src/{{ cookiecutter.module_name }}/_version.py"
+[tool.setuptools]
+packages = ["{{ cookiecutter.module_name }}", "{{ cookiecutter.module_name }}.resources"]
+
+[tool.setuptools.package-data]
+"{{ cookiecutter.module_name }}.resources" = ["resources/**/*.yaml"]
+
+[tool.setuptools.package-dir]
+'' = "src"
+"{{ cookiecutter.module_name }}.resources" = "resources"
+
+[tool.pytest.ini_options]
+asdf_schema_root = 'resources/{{ cookiecutter.schema_org_uri }}/schemas'
+asdf_schema_tests_enabled = 'true'
+asdf_schema_ignore_unrecognized_tag = 'true'
+testpaths = """
+    tests
+    resources
+"""
+filterwarnings = [
+    'error',
+]
+addopts = '--color=yes'
+
+[tool.black]
+line-length = 120
+force-exclude = '''
+^/(
+  (
+      \.eggs
+    | \.git
+    | \.pytest_cache
+    | \.tox
+    | build
+    | dist
+  )/
+)
+'''
+
+[tool.ruff]
+target-version = "py39"
+line-length = 120
+select = [
+    "E", # pycodestyle
+    "F", # pyflakes, autoflake
+    "I", # isort
+    "S", # bandit
+    "UP", # pyupgrade
+    "RUF",  # ruff specific, includes yesqa
+]
